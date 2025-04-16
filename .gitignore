@@ -3,3 +3,5 @@ package-lock.json
 /Config/dbconnect.php
 *.Zone.Identifier
 
+*.Zone.Identifier
+.DS_Store
