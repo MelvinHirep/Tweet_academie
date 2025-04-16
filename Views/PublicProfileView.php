@@ -5,8 +5,6 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 require_once '../Models/ProfileModel.php';
 require_once '../Config/dbconnect.php';
-require_once('../Models/SearchModel.php');
-
 
 if (!isset($_GET['username']) || empty($_GET['username'])) {
     echo "Aucun utilisateur spécifié.";
@@ -15,9 +13,6 @@ if (!isset($_GET['username']) || empty($_GET['username'])) {
 $username = htmlspecialchars($_GET['username']);
 
 $profileModel = new Profile($db);
-$model = new Search($db);
-
-
 $userProfile = $profileModel->getUserByUsername($username);
 
 if (!$userProfile) {
@@ -142,34 +137,6 @@ $profileTweets = $profileModel->TweetsUser($userId);
         <img class="w-full h-full object-cover transition-all duration-700" src="<?php if (!empty($userProfile['header'])) { echo htmlspecialchars($userProfile['header']);} else {echo '../Assets/pfdefault.png';}?>">
     </div>
 
-    <?php if ($userProfile['id'] !== $_SESSION['user_id']): ?>
-    <div class="hover:bg-gray-300 dark:hover:bg-gray-700 absolute right-6 top-[240px] bg-white text-black border border-gray-300 px-3 py-1 lg:px-4 lg:py-2 text-base lg:text-base rounded-full shadow-lg dark:bg-black dark:text-white dark:border-white flex items-center space-x-2 group">
-
-            <span class="block lg:hidden">
-                <?php if ($model->isFollowing($_SESSION['user_id'], $userProfile['id'])): ?>
-                    <i class="fas fa-user-minus text-xl"></i> <!-- Icône pour se désabonner -->
-                <?php else: ?>
-                    <i class="fas fa-user-plus text-xl"></i> <!-- Icône pour s'abonner -->
-                <?php endif; ?>
-            </span>
-
-            <span class="hidden lg:block group-hover:block">
-                <form action="../Controllers/SearchController.php" method="POST">
-                    <input type="hidden" name="followed_id" value="<?= $userProfile['id'] ?>">
-                    <?php if ($model->isFollowing($_SESSION['user_id'], $userProfile['id'])): ?>
-                        <input type="hidden" name="action" value="unfollow">
-                        <button type="submit" class="focus:outline-none">Se désabonner</button>
-                    <?php else: ?>
-                        <button type="submit" class="focus:outline-none">S'abonner</button>
-                    <?php endif; ?>
-                </form>
-            </span>
-
-        </div>
-    <?php endif; ?>
-
-
-
     <!-- Image de Profil -->
     <div class="relative flex items-center px-6">
         <div class="absolute -top-16 left-6">
@@ -211,6 +178,7 @@ $profileTweets = $profileModel->TweetsUser($userId);
             <span class="font-normal text-gray-600 text-xs dark:text-white/80 transition-all duration-700"> abonnements</span>
         </a>
     </div>
+</section>
 
 
 

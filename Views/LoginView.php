@@ -2,7 +2,6 @@
 include "../Config/dbconnect.php";
 require_once '../Controllers/LoginController.php';
 
-
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['logout'])) {
     $controller = new LoginController();
     $controller->logout();
@@ -27,41 +26,32 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['logout'])) {
     <button id="theme-toggle" class="fixed top-5 right-5 p-2 bg-gray-800 text-white rounded-full">
     🌙
     </button>   
-    <div class="flex flex-col lg:flex-row items-center justify-center min-h-screen p-6 bg-white dark:bg-black">
+    <div class="flex items-center justify-center mt-20">
+        <img src="../Assets/logo/Black_Illustration_Ninja_Esport_Or_Gaming_Mascot_Logo_-3-removebg-preview.png" alt="">
+        <div class="ml-5 p-10 border rounded-xl shadow-xl shadow-blue-400">
+            <form action="../Controllers/LoginController.php" method="POST" class="">
+                <label for="email"></label>
+                <div class="mt-5">
+                    <i class="fa-solid fa-user dark:text-white"></i>
+                    <input type="email" name="email" class="border rounded-md p-0.3 ml-1 text-black" placeholder="Adresse mail" required>
+                </div>
 
-    <div class="mb-8 lg:mb-0 lg:mr-10 flex justify-center">
-        <img src="../Assets/logo/Black_Illustration_Ninja_Esport_Or_Gaming_Mascot_Logo_-3-removebg-preview.png" alt="logo" class="w-40 md:w-56 lg:w-64 object-contain">
-    </div>
-      
-    <!-- Formulaire -->
-    <div class="w-full max-w-md p-6 md:p-10 border rounded-xl shadow-xl shadow-blue-400 bg-white dark:bg-black transition-all duration-700">
-        <form action="../Controllers/LoginController.php" method="POST" class="space-y-6">
-            <!-- Email -->
+                <label for="password"></label>
+                <div class="mt-5">
+                    <i class="fa-solid fa-lock dark:text-white"></i>
+                    <input type="password" name="password" class="border rounded-md p-0.3 ml-1 text-black" placeholder="Mot de passe" required>
+                </div>
 
-            <div class="flex items-center border rounded-md p-2">
-                <i class="fa-solid fa-user text-gray-500 dark:text-white mr-2"></i>
-                <input type="email" name="email" class="flex-1 outline-none bg-transparent text-black dark:text-white placeholder-gray-400" placeholder="Adresse mail" required>
+                <button type="submit" class="border-2 border-blue-300 rounded-md p-1.5  bg-blue-400 hover:bg-gray-800 mt-5 text-gray-50 text-[14px]">Se connecter</button>
+            </form>
+            <div class="mt-10">
+                <p>T'as pas encore de compte soldat?</p>
+                <button class="border-2 border-blue-300 rounded-md p-1.5  bg-blue-400 hover:bg-gray-800 mt-2 text-gray-50 text-[14px]">
+                    <a href="RegisterView.php" class="text-gray-100 text-[14px]">S'inscrire !</a>
+                </button>
             </div>
-
-            <div class="flex items-center border rounded-md p-2">
-                <i class="fa-solid fa-lock text-gray-500 dark:text-white mr-2"></i>
-                <input type="password" name="password" class="flex-1 outline-none bg-transparent text-black dark:text-white placeholder-gray-400" placeholder="Mot de passe" required>
-            </div>
-          
-            <button type="submit" class="w-full border-2 border-blue-300 rounded-md p-2 bg-blue-400 hover:bg-gray-800 transition text-white text-sm md:text-base">
-                Se connecter
-            </button>
-        </form>
-
-        <div class="mt-6 text-center">
-            <p class="text-sm text-black dark:text-white mb-2">T'as pas encore de compte soldat ?</p>
-            <a href="RegisterView.php" class="inline-block border-2 border-blue-300 rounded-md p-2 bg-blue-400 hover:bg-gray-800 transition text-white text-sm md:text-base">
-                S'inscrire
-            </a>
         </div>
     </div>
-</div>
-
     <script src="../Assets/SwitchTheme.js"></script>
     </body>
 </html>

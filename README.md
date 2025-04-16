@@ -1,1 +1,3 @@
-# W-WEB-090-PAR-1-1-academie-apolinaire.nya-frot-coutaz
+# CloneTwitter-Badjiry
+Nxggachain en esprit !
+Reproduire les fonctionnalités de Twitter en rajoutant notre touche personnelle !
